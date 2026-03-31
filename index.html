@@ -35,23 +35,31 @@
 
     .panel {
       width: min(100%, 1080px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(150deg, rgba(15,23,42,.95), rgba(14, 22, 39, .75));
-      box-shadow: 0 16px 40px var(--shadow);
-      backdrop-filter: blur(10px);
-      padding: 1rem;
+      border: 1px solid rgba(82, 95, 127, 0.3);
+      border-radius: calc(var(--radius) + 4px);
+      background: rgba(10, 18, 41, 0.8);
+      box-shadow: 0 20px 54px rgba(7, 11, 25, 0.45);
+      backdrop-filter: blur(16px);
+      padding: 1.2rem;
+      transform: translate3d(0, 0, 0);
     }
 
     h1 { margin: 0 0 .5rem; font-size: clamp(1.5rem, 3.5vw, 2.2rem); }
     p.subtitle { margin: .1rem 0 1.1rem; color: #94a3b8; }
 
     .controls {
-      display: grid;
-      grid-template-columns: 1fr auto auto;
+      display: flex;
       gap: 0.75rem;
-      align-items: end;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
       margin-bottom: 1rem;
+    }
+
+    .controls > div,
+    .controls > button {
+      flex: 1 1 190px;
+      min-width: 0;
     }
 
     .controls label { font-size: 0.83rem; color: #cbd5e1; }
@@ -119,18 +127,29 @@
     .inline-actions {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+      align-items: stretch;
     }
 
-    .inline-actions button { background: linear-gradient(135deg, #34d399 0%, #22d3ee 100%); color: #0f172a; }
+    .inline-actions button {
+      background: linear-gradient(145deg, #38bdf8 0%, #6d28d9 100%);
+      color: #ffffff;
+      border: none;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .inline-actions button:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
 
     .history {
-      background: rgba(15, 23, 42, 0.85);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 0.6rem 0.7rem;
       margin-bottom: 0.8rem;
+      background: rgba(15, 23, 42, 0.75);
     }
 
     .history h2 {
@@ -219,28 +238,28 @@
 
     const seedPools = {
       creative: [
-        ["Whisper", "Color", "Dream", "Echo", "Spark", "Mosaic", "Canvas", "Melody", "Breeze", "Lumen"],
-        ["Novel", "Fusion", "Ripple", "Pulse", "Orbit", "Glow", "Pixel", "Muse", "Vivid", "Aura"],
-        ["Invent", "Sketch", "Compose", "Craft", "Blend", "Frame", "Pattern", "Tinker", "Arrange", "Design"],
-        ["Story", "Idea", "Vision", "Theme", "Rhythm", "Scene", "Tone", "Texture", "Motif", "Whimsy"]
+        ["A designer", "An artist", "A writer", "A thinker", "A storyteller", "A maker", "A creator", "A builder", "A dreamer", "A visionary"],
+        ["designs", "builds", "creates", "imagines", "sketches", "crafts", "forms", "invents", "refines", "explores"],
+        ["a playful app", "a colorful interface", "a brand identity", "a unique algorithm", "a fresh concept", "a narrative experience", "a visual language", "a prototype", "a campaign", "an interactive system"],
+        ["to inspire people", "for joyful discovery", "for effortless creativity", "with bold expression", "to spark new ideas", "for meaningful connection", "to simplify decisions", "for immersive storytelling", "to surprise users", "for brighter futures"]
       ],
       practical: [
-        ["Plan", "Budget", "Build", "Proof", "Guide", "Test", "Manage", "Launch", "Track", "Optimize"],
-        ["System", "Tool", "Process", "Workflow", "Device", "Platform", "Method", "Module", "Script", "Routine"],
-        ["Efficiency", "Quality", "Support", "Schedule", "Safety", "Stability", "Delivery", "Repair", "Logistics", "Measure"],
-        ["Outcome", "Result", "Growth", "Profit", "Impact", "Value", "Product", "Service", "Revenue", "Scale"]
+        ["A team", "A startup", "A student", "An engineer", "A manager", "A developer", "A planner", "A consultant", "A service", "A product"],
+        ["implements", "optimizes", "automates", "tests", "documents", "analyzes", "updates", "deploys", "integrates", "scales"],
+        ["a workflow", "a toolkit", "a dashboard", "a process", "a platform", "a report", "an API", "a roadmap", "a system", "a solution"],
+        ["for better efficiency", "to reduce costs", "to improve quality", "for faster results", "to increase accessibility", "for stronger security", "to streamline operations", "for reliable performance", "to reduce waste", "for measurable impact"]
       ],
       playful: [
-        ["Bubble", "Bounce", "Giggle", "Whirl", "Sparkle", "Twist", "Prank", "Juggle", "Doodle", "Pop"],
-        ["Adventure", "Quest", "Potion", "Maze", "Puzzle", "Carnival", "Rocket", "Retro", "Toy", "Game"],
-        ["Monster", "Hero", "Alien", "Pirate", "Witch", "Robot", "Dragon", "Unicorn", "Ninja", "Knight"],
-        ["Party", "Festival", "Show", "Parade", "Zoom", "Race", "Duel", "Challenge", "Joke", "Magic"]
+        ["A playful crew", "A curious child", "A quirky bot", "A friendly mascot", "A cartoon hero", "An adventurous team", "A party planner", "A game master", "A whimsical brand", "A curious explorer"],
+        ["tosses", "juggles", "launches", "spins", "hides", "reveals", "collects", "builds", "challenges", "reimagines"],
+        ["magic bubbles", "colorful puzzles", "fun mini-games", "mystery tokens", "animated characters", "retro levels", "neon worlds", "interactive challenges", "prize quests", "joyful experiences"],
+        ["for happy crowds", "to ignite laughter", "for creative play", "for a playful journey", "to spark imagination", "for social sharing", "for friendly competition", "to brighten moods", "for memorable moments", "for daily inspiration"]
       ],
       inspiring: [
-        ["Bold", "Visionary", "Brave", "Radiant", "Hope", "Courage", "Purpose", "Future", "Legacy", "Elevate"],
-        ["Leader", "Change", "Impact", "Dream", "Rise", "Thrive", "Grow", "Empower", "Influence", "Aspire"],
-        ["Connection", "Unity", "Harmony", "Momentum", "Clarity", "Balance", "Strength", "Wisdom", "Integrity", "Compassion"],
-        ["Journey", "Mission", "Achievement", "Breakthrough", "Story", "Renewal", "Innovation", "Freedom", "Transformation", "Beacon"]
+        ["A leader", "A community", "A mentor", "An innovator", "An advocate", "A dreamer", "A changemaker", "A guide", "A pioneer", "A movement"],
+        ["inspires", "empowers", "supports", "ignites", "transforms", "elevates", "connects", "champions", "creates", "awakens"],
+        ["a purpose-driven project", "a sustainable initiative", "a bold vision", "a shared mission", "a growth path", "a positive culture", "a new framework", "an inclusive program", "a community network", "a mindful practice"],
+        ["for lasting change", "to nurture talents", "for a brighter tomorrow", "to unleash potential", "for meaningful success", "to build trust", "for healthy growth", "to encourage courage", "for collective momentum", "to honor values"]
       ]
     };
 
@@ -257,20 +276,48 @@
 
           while (deck.size < 200) {
             const baseWord = base[counter % base.length];
-            const variants = [
-              `${baseWord}`,
-              `${baseWord} ${1 + ((counter + i) % 20)}`,
-              `${baseWord}-${(counter % 50) + 1}`,
-              `${baseWord}${['','ly','er','core','plus'][counter % 5]}`,
-              `${['Ultra','New','Neo','Meta','Pure'][counter % 5]} ${baseWord}`
-            ];
+            let choice = baseWord;
 
-            const choice = variants[counter % variants.length];
+            if (i === 0) {
+              const subjects = [
+                `${baseWord}`,
+                `The ${baseWord}`,
+                `${baseWord} team`,
+                `${baseWord} community`,
+                `${baseWord} studio`
+              ];
+              choice = subjects[counter % subjects.length];
+            } else if (i === 1) {
+              const actions = [
+                `${baseWord}`,
+                `is ${baseWord}`,
+                `${baseWord}s`,
+                `${baseWord} on`,
+                `${baseWord} for`
+              ];
+              choice = actions[counter % actions.length];
+            } else if (i === 2) {
+              const objects = [
+                `${baseWord}`,
+                `${baseWord} solution`,
+                `${baseWord} platform`,
+                `${baseWord} experience`,
+                `${baseWord} system`
+              ];
+              choice = objects[counter % objects.length];
+            } else {
+              const outcomes = [
+                `${baseWord}`,
+                `to ${baseWord}`,
+                `for ${baseWord}`,
+                `with ${baseWord}`,
+                `${baseWord} overall`
+              ];
+              choice = outcomes[counter % outcomes.length];
+            }
+
             deck.add(choice);
             counter++;
-            if (counter > 1200 && deck.size < 200) {
-              deck.add(`${baseWord}-#${counter}`);
-            }
           }
           moodDecks[mood][i] = Array.from(deck).slice(0, 200);
         }
@@ -308,9 +355,21 @@
     }
 
     function generateIdea(words) {
-      const meaningful = words.filter(Boolean);
-      if (!meaningful.length) return 'Empty minds can also spark an idea. Try again!';
-      return meaningful.join(' • ');
+      const [subject = '', verb = '', object = '', outcome = ''] = words.map(w => w.trim()).filter((v, idx) => v || idx === 3 || idx === 2 || idx === 1 || idx === 0);
+      if (!subject && !verb && !object && !outcome) return 'Empty minds can also spark an idea. Try again!';
+
+      let sentence = '';
+      if (subject) sentence += subject;
+      if (verb) sentence += (sentence ? ' ' : '') + verb;
+      if (object) sentence += (sentence ? ' ' : '') + object;
+      if (outcome) {
+        const heading = outcome.match(/^(for|to|with|as|on)\b/i) ? outcome : `for ${outcome}`;
+        sentence += (sentence ? ' ' : '') + heading;
+      }
+
+      sentence = sentence.trim();
+      if (!/[.!?]$/.test(sentence)) sentence += '.';
+      return sentence;
     }
 
     function loadSettings() {
